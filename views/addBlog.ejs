@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Add New Blog - Blogging App</title>
+    <style>
+        /* Resetting styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Body styling with background gradient */
+        body {
+            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Stack children vertically */
+            min-height: 100vh; /* Ensure full height */
+        }
+
+        /* Navbar styling */
+        nav {
+            width: 100%;
+            position: fixed; /* Fixed position for sticky navbar */
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            padding: 10px 0; /* Add padding to navbar */
+            text-align: center; /* Center-align the navbar items */
+        }
+
+        /* Blog form container styling */
+        .blog-form-container {
+            background-color: #fff;
+            padding: 30px; /* Reduced padding for a smaller box */
+            width: 70%; /* Adjust width for better responsiveness */
+            max-width: 500px; /* Limit maximum width */
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 40px; /* Space below the navbar */
+        }
+
+        h1 {
+            margin-bottom: 15px; /* Reduced bottom margin */
+            color: #333;
+            font-size: 28px; /* Reduced font size */
+        }
+
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 15px; /* Reduced bottom margin */
+            position: relative;
+            text-align: left; /* Align labels to the left */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px; /* Reduced padding */
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s;
+            padding-right: 40px;
+        }
+
+        /* Input focus effect */
+        input:focus, textarea:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 8px rgba(108, 92, 231, 0.5);
+        }
+
+        /* Button styling */
+        .btn {
+            background-color: #6c5ce7;
+            color: white;
+            padding: 10px 20px; /* Reduced padding */
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px; /* Reduced font size */
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .btn:hover {
+            background-color: #341f97;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Responsive media queries */
+        @media (max-width: 768px) {
+            .blog-form-container {
+                width: 90%; /* Use more width on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %> <!-- Navbar inclusion -->
+
+    <div class="blog-form-container">
+        <h1>Add New Blog</h1>
+        <form action="/blog" method="POST" enctype="multipart/form-data"> <!-- Added enctype for file upload -->
+            <div class="form-group">
+                <label for="title">Blog Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter blog title" required>
+            </div>
+            <div class="form-group">
+                <label for="coverImage">Cover Image</label>
+                <input type="file" id="coverImage" name="coverImage" accept="image/*" required> <!-- Cover image input -->
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="body" rows="8" placeholder="Write your blog content here..." required></textarea>
+            </div>
+            <button type="submit" class="btn">Submit Blog</button>
+        </form>
+    </div>
+
+    <%- include('./partials/script') %> <!-- Script inclusion -->
+</body>
+</html>
